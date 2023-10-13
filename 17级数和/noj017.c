@@ -22,7 +22,6 @@ int main() {
         }
        
     }
-
     printf("=%.2lf\n", sum);
 
 

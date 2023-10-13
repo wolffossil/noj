@@ -24,11 +24,16 @@ long long sum_of_multiples(long long n) {
 int main(){
     long long  T,n;
     scanf("%lld",&T);
+    int arr[100000];
+
     for(long long i=0;i<T;i++){
         scanf("%lld",&n);
         //printf("%lld\n",solve(n));
-        printf("%lld\n",sum_of_multiples(n));
+        //printf("%lld\n",sum_of_multiples(n));
+        arr[i]=sum_of_multiples(n);
+    }
+    for(long long i=0;i<T;i++){
 
-
+        printf("%lld\n",arr[i]);
     }
 }
