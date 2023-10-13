@@ -1,6 +1,9 @@
 #include <stdio.h>
 
 int HarshadNumber(int n){
+    if(n==1){
+        return 0;
+    }
     int t=n,s=0;
     while(t){
         s=s+t%10;
@@ -13,7 +16,9 @@ int HarshadNumber(int n){
 
 int judge(int n){
     int tmp=HarshadNumber(n);
+    //printf("%d",tmp);
     if(tmp==0) return 0;
+    else return 1+judge(tmp);
     
 }
 
@@ -21,8 +26,5 @@ int judge(int n){
 int main(){
     int num;
     scanf("%d", &num);
-    while(1){
-        int tmp=HarshadNumber(num);
-        if(tmp=0)
-    }
+    printf("%d\n", judge(num));
 }
