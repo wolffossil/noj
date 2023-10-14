@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 void binaryRepresentation(int n) {
     if (n == 0) {
         return;
@@ -14,12 +15,22 @@ void binaryRepresentation(int n) {
             temp *= 2;
             power++;
         }
-
+        
         if (temp == n) {
-            printf("2(%d)", power);
+            printf("2(");
+            binaryRepresentation(power);
+            printf(")");
         } else {
-            printf("2(%d)+", power);
-            binaryRepresentation(n - temp);
+            if(power == 1) {
+                printf("2+");
+            }
+            else{
+                printf("2(");
+                binaryRepresentation(power);
+                printf(")+");
+            }
+                binaryRepresentation(n - temp);
+
         }
     }
 }
