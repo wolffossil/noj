@@ -21,7 +21,7 @@ void binaryRepresentation(int n) {
             binaryRepresentation(power);
             printf(")");
         } else {
-            if(power == 1) {
+            if(power == 1) {//括号内的单独为1的数字不需要转换为2(0)
                 printf("2+");
             }
             else{

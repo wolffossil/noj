@@ -2,15 +2,15 @@
 
 long long calculateTotalLength(long long  N, long long  X) {
     long long totalLength = N;
-    long long N_X=N-X;
+    long long N_X=N-X;//镜墙
     while(N_X>0){
 
-        if(N_X%X==0){
+        if(N_X%X==0){//镜墙的长度刚好可以让一种光长的光线反射到原点
             long long n=N_X/X;
             totalLength+=(2*n-1)*X;
             break;
         }
-        else if(N_X/X>=1){
+        else if(N_X/X>=1){//不能，则需要计算差多少，最后置换反射光长和镜墙的长度
             
             long long n=N_X/X;
             totalLength+=2*n*X;
