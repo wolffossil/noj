@@ -5,9 +5,11 @@ int judge(int x,int y){
     if(x==1){
         return 1;
     }
-
-    if(y%x){
-        return 1;
+    if(y%x==0){
+        return 0;
+    }
+    else{
+        return judge(y%x,x);
     }
     return 0;
 
@@ -21,6 +23,7 @@ int main(){
         for(int j=i+1;j<n;j++){
             if(judge(i,j)){
                 count++;
+                printf("(%d,%d)\n",i,j);
             }
     }
     int sum=3+2*count;
