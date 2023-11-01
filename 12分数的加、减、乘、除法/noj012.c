@@ -24,7 +24,6 @@ int main(){
     common_divisor=gcd(result1,result2);
     result1/=common_divisor;
     result2/=common_divisor;
-    //simplify(&result1,&result2);
     printf("(%d/%d)+(%d/%d)=%d/%d\n",a1,a2,b1,b2,result1,result2);
 
     //减法
@@ -33,7 +32,6 @@ int main(){
     common_divisor=gcd(result1,result2);
     result1/=common_divisor;
     result2/=common_divisor;
-    //simplify(&result1,&result2);
     printf("(%d/%d)-(%d/%d)=%d/%d\n",a1,a2,b1,b2,result1,result2);
 
     //乘法
@@ -42,7 +40,6 @@ int main(){
     common_divisor=gcd(result1,result2);
     result1/=common_divisor;
     result2/=common_divisor;
-    //simplify(&result1,&result2);
     printf("(%d/%d)*(%d/%d)=%d/%d\n",a1,a2,b1,b2,result1,result2);
 
     //除法
@@ -51,7 +48,6 @@ int main(){
     common_divisor=gcd(result1,result2);
     result1/=common_divisor;
     result2/=common_divisor;
-    //simplify(&result1,&result2);
     printf("(%d/%d)/(%d/%d)=%d/%d\n",a1,a2,b1,b2,result1,result2);
 
 

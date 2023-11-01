@@ -68,28 +68,29 @@ int is_perfect(int x1, int y1, int x2, int y2){
 }
 
 int sums(int x1,int y1,int x2,int y2){
-    
+    //if((y2-y1)==(x2-x1)){
+        //printf("x1:%d y1:%d x2:%d y2:%d \n",x1,y1,x2,y2);
+        if( x2-x1==1&&y2-y1==1){
+            if(a[x1][y1]==1&&a[x1][y2]==1&&a[x2][y1]==1&&a[x2][y2]==1){
+                printf("x1:%d y1:%d x2:%d y2:%d counts:%d\n",x1,y1,x2,y2,counts);
+                counts++;
+                return 1;
 
-    
-    if( x2-x1==1&&y2-y1==1){
-        if(a[x1][y1]==1&&a[x1][y2]==1&&a[x2][y1]==1&&a[x2][y2]==1&&is_notused(x1,y1,x2,y2)){
-            //printf("x1:%d y1:%d x2:%d y2:%d counts:%d\n",x1,y1,x2,y2,counts);
+            }
+            else{
+                return 0;
+            }
+        }
+        if (x2==x1 || y2==y1) {
+            return 0;  // 子矩阵太小，不可能是完美矩阵
+        }
+        
+        if(is_perfect(x1,y1,x2,y2)){
+            printf("x1:%d y1:%d x2:%d y2:%d counts:%d\n",x1,y1,x2,y2,counts);
             counts++;
-            return 1;
+        }
 
-        }
-        else{
-            return 0;
-        }
-    }
-    if (x2==x1 || y2==y1) {
-        return 0;  // 子矩阵太小，不可能是完美矩阵
-    }
-    
-    if(is_perfect(x1,y1,x2,y2)&&is_notused(x1,y1,x2,y2)){
-        //printf("x1:%d y1:%d x2:%d y2:%d counts:%d\n",x1,y1,x2,y2,counts);
-        counts++;
-    }
+    //}
     sums(x1+1,y1,x2,y2);
     sums(x1,y1+1,x2,y2);
     sums(x1,y1,x2-1,y2);
@@ -112,3 +113,22 @@ int main(){
 
 }
 
+/*
+4 4
+1 1 1 1
+1 0 1 1 
+1 1 0 1
+1 1 1 1
+
+5 5
+1 0 1 1 1
+1 0 1 0 1
+1 1 0 1 1
+1 0 0 1 1
+1 1 1 1 1
+
+2 2 
+1 1 
+1 1
+
+*/
