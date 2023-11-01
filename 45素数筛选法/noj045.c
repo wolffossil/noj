@@ -22,8 +22,6 @@ void Euler_sieve(int n)
 }
     
 
-
-
 int main(){
     int n;
     scanf("%d",&n);

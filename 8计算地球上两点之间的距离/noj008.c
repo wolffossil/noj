@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <math.h>
 
-#define EARTH_RADIUS 6371// µØÇò°ë¾¶£¨¹«Àï£©
+#define EARTH_RADIUS 6371// åœ°çƒåŠå¾„ï¼ˆå…¬é‡Œï¼‰
 
-// Ê¹ÓÃHaversine¹«Ê½¼ÆËãÁ½¸öµØµãÖ®¼äµÄ¾àÀë£¨Ö±½ÓÊ¹ÓÃ»¡¶È£©
-// ½«½Ç¶È×ª»»Îª»¡¶È
+// ä½¿ç”¨Haversineå…¬å¼è®¡ç®—ä¸¤ä¸ªåœ°ç‚¹ä¹‹é—´çš„è·ç¦»ï¼ˆç›´æ¥ä½¿ç”¨å¼§åº¦ï¼‰
+// å°†è§’åº¦è½¬æ¢ä¸ºå¼§åº¦
 double degreesToRadians(double degrees) {
     return degrees * M_PI/ 180.0;
 }
