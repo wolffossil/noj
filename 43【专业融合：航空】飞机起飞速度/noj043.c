@@ -1,41 +1,72 @@
 #include <stdio.h>
 #include <math.h>
+#define scanf scanf_s
+double calculateSpeed(double temperature, double pressure, int elevation, int runway, int weight, int flaps, int wet) {
+    // 检查输入是否在有效范围内
+    if (flaps != 1 && flaps != 5 && flaps != 15) {
+        return -1;
+    }
 
-
-int solve(double temperature,double pressure,int elevation,int runway,int weight,int Flaps,int Wet){
-    if(Flaps!=1&&Flaps!=5&&Flaps!=15) return 0;
-    if(weight<41413||weight>65000) return 0;
-    if(runway<=6900) return 0;
-
-    //floor函数用于向下取整，ceil用于向上取整，返回值均为double
-    int temp,pre;
-    temp=(int)floor(temperature/10);
-    pressure=(elevation+1000*(29.92-pressure))/1000;
-    pre=(int)ceil(pressure);
-
-    //查操纵表，转换为数组,第一行无意义,其中有一些因为图像问题需要调整，但暂不知如何调整
-    char table[8][10]={
-        'X','X','X','X','X','X','X','X','X','X',
-        'A','A','A','A','A','A','B','B','B','C',
-        'A','A','A','A','A','A','B','B','B','C',
-        'A','A','A','A','A','B','B','B','C','D',
-        'B','B','B','B','B','C','C','D','D','D',
-        'C','C','C','C','C','D','D','D','E','E',
-        'D','D','D','D','E','E','E','X','X','X',
-        'E','E','E','X','X','X','X','X','X','X'
+    if (weight < 41413 || weight > 65000 || runway <= 6900) {
+        return -1;
+    }
+    // 计算温度档和气压档
+    int tempRange = floor(temperature / 10);
+    int pressureRange = ceil(pressure);
+    // 检查操纵参考表是否存在
+    if (tempRange < 0 || tempRange > 7 || pressureRange < 0 || pressureRange > 9) {
+        return -1;
+    }
+    // 根据温度档和气压档查找操纵参考值
+    char referenceTable[8][10] = {
+        {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K'},
+        {'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'},
+        {'W', 'X', 'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F'},
+        {'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R'},
+        {'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A', 'B'},
+        {'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M'},
+        {'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X'},
+        {'Y', 'Z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'}
     };
-    char reference = table[temp][pre];
-    if(reference=='X') return 0;
-
-
+    char reference = referenceTable[tempRange][pressureRange];
+    // 检查操纵参考表是否存在V1、Vr和V2
+    if (reference != 'A' && reference != 'B' && reference != 'C' && reference != 'D' && reference != 'E') {
+        return -1;
+    }
+    // 根据襟翼位置、起飞重量和操纵参考值查找V1、Vr和V2
+    int speedTable[3][5] = {
+        {117, 126, 134, 142, 151},
+        {122, 131, 139, 147, 156},
+        {127, 136, 145, 153, 162}
+    };
+    int speedIndex = (flaps - 1) / 7;
+    int* speedRow = speedTable[speedIndex];
+    int v1 = speedRow[weight / 13000];
+    int vr = speedRow[weight / 13000] + 11;
+    int v2 = speedRow[weight / 13000] + 18;
+    // 如果是湿跑道，根据跑道长度和襟翼位置查找折扣值
+    if (wet == 1) {
+        int discountTable[3][3] = {
+            {0, 0, 0},
+            {0, 0, 0},
+            {0, 0, 0}
+        };
+        int discountIndex = (flaps - 1) / 7;
+        int* discountRow = discountTable[discountIndex];
+        int discount = discountRow[runway / 1000];
+        v1 -= discount;
+    }
+    printf("V1=%dkts Vr=%dkts V2=%dkts\n", v1, vr, v2);
+    return 0;
 }
-
-int main(){
-    double temperature,pressure;
-    int elevation,runway,weight,Flaps,Wet;
-    scanf("%lf %lf %d %d %d %d %d %d",&temperature,&pressure,&elevation,&runway,&weight,&Flaps,&Wet);
-
-    
-
+int main() {
+    double temperature, pressure;
+    int elevation, runway, weight, flaps, wet;
+    scanf("%lf %lf", &temperature, &pressure);
+    scanf("%d %d %d %d %d", &elevation, &runway, &weight, &flaps, &wet);
+    int result = calculateSpeed(temperature, pressure, elevation, runway, weight, flaps, wet);
+    if (result == -1) {
+        printf("Flight not possible!\n");
+    }
+    return 0;
 }
-
