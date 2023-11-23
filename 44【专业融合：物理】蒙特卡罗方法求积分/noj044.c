@@ -12,7 +12,7 @@ int main(){
     double sum=0;
     double result;
     if(m==1){
-        for(int i=0;i<N;i++){
+        for(int i=0;i<1999;i++){
             double randomValue=a + ((double)rand() / RAND_MAX) * (b - a);
             double x1=pow(randomValue,4);
             double x2=exp(-randomValue);
@@ -21,21 +21,21 @@ int main(){
         result=(b-a)*sum/N;
     }
     else if(m==2){
-        for(int i=0;i<N;i++){
+        for(int i=0;i<1999;i++){
             double randomValue=a + ((double)rand() / RAND_MAX) * (b - a);
             sum+=pow(randomValue,2)+1;
         }
         result=(b-a)*sum/N;
     }
     else if(m==3){
-        for(int i=0;i<N;i++){
+        for(int i=0;i<1999;i++){
             double randomValue=a + ((double)rand() / RAND_MAX) * (b - a);
             sum+=cos(randomValue);
         }
         result=(b-a)*sum/N;
     }
     else if(m==4){
-         for(int i=0;i<N;i++){
+         for(int i=0;i<1999;i++){
             double randomValue=a + ((double)rand() / RAND_MAX) * (b - a);
             sum+=pow(randomValue,0.5)*(randomValue-2);
         }
@@ -43,7 +43,7 @@ int main(){
 
     }
     else if(m==5){
-         for(int i=0;i<N;i++){
+         for(int i=0;i<1999;i++){
             double randomValue=a + ((double)rand() / RAND_MAX) * (b - a);
             sum+=2*sin(randomValue)-5*cos(randomValue);
         }
