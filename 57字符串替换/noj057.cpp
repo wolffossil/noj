@@ -14,22 +14,26 @@ void str_replace(string str,string olds,string news){
         else{
             res=res+str.substr(0,pos)+news;
             str=str.substr(pos+olds.length());
-            
+             
         }
     }
-    cout<<res;
+    cout<<res<<endl;
 
 }
 
 int main(){
     string str,olds,news;
+    while(1){
     getline(cin,str);
     getline(cin,olds);
     getline(cin,news);
     str_replace(str,olds,news);
+    }
     
 }
 
 /*
-ebe
+xx is the best,xx for xxer
+xx
+nwpu
 */

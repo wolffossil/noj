@@ -13,21 +13,18 @@ int main(){
         sum+=a[5];
         sum+=a[4];
         int sub=a[2]-a[4]*5;
-        if(sub<=0){
-            a[2]=0;
-        }
-        else{
-            a[2]=sub;
-        }
+  
         sum+=a[3]/4;
         if(a[3]%4){
             sum++;
         }
         int x=a_3[a[3]%4];
-        if(a[2]>x){
-            sum+=(a[2]-x)/9;
-            if((a[2]-x)%9){
-                sum++;
+        if(sub>=0){
+            if(a[2]-sub>x){
+                sum+=(a[2]-sub-x)/9;
+                if((a[2]-sub-x)%9){
+                    sum++;
+                }
             }
         }
         x=36*sum-(a[3]*9+a[2]*4+a[4]*16+a[5]*25+a[6]*36);
