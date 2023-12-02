@@ -33,7 +33,7 @@ int main(){
     scanf("%d",&n);
     for(int i=1; i<=n;i++){
         double output=PIDCalculate(&pid,setpoint,measuredValue);
-        printf("%d %.6lf\n",i,output);
+        printf("%d %.6lf\n",i,measuredValue);
         measuredValue+=output;
     }
 
