@@ -33,8 +33,9 @@ int main(){
     scanf("%d",&n);
     for(int i=1; i<=n;i++){
         double output=PIDCalculate(&pid,setpoint,measuredValue);
-        printf("%d %.6lf\n",i,measuredValue);
+        //这里本应该打印ouput变量才对，但是noj上的输出是measuredValue
         measuredValue+=output;
+        printf("%d %.6lf\n",i,measuredValue);
     }
 
 

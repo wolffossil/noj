@@ -7,8 +7,17 @@ int calculate(int n){
     int sum=0;
     for(int i=0; i<=9;i++)
         for(int j=0;j<=9;j++){
-            if(i+j>=10) break;
-            if(a[i]+a[j]+a[i+j]==n) sum++;
+            int m=i+j,s=0;
+            if(m>=10){
+                s=s+a[m/10]+a[m%10];
+            }
+            else{
+                s=s+a[m];
+            }
+            if(a[i]+a[j]+s==n) {
+                printf("%d+%d=%d\n",i,j,m);
+                sum++;
+            }
         }
     return sum;
 }
