@@ -28,7 +28,8 @@ int main(){
             break;
         }
         sum=0;
-        calculate(0,0);
+        //初始坐标需要选择（1，1）
+        calculate(1,1);
         printf("%d\n",sum);
     }
 
@@ -40,6 +41,4 @@ int main(){
 8 6 9 6
 0 0 0 0
 
-3 3 0 3
-0 0 0 0
 */
