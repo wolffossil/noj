@@ -2,6 +2,9 @@
 
 using namespace std;
 
+string out[100];
+int k=0;
+
 int check(string str){
     int i,result;
 
@@ -20,10 +23,14 @@ int convert(string str){
 }
 
 
-void print_BeingTime(string utcTime){
+void convert_BeingTime(string utcTime){
     int  hour=stoi(utcTime.substr(0,2));
     int  B_hour=(hour+8)%24;
-    cout<<B_hour<<":"<<utcTime.substr(2,2)<<":"<<utcTime.substr(4,2)<<endl; 
+    if(B_hour/10==0)
+        out[k++]="0"+to_string(B_hour)+":"+utcTime.substr(2,2)+":"+utcTime.substr(4,2);
+    else
+        out[k++]=to_string(B_hour)+":"+utcTime.substr(2,2)+":"+utcTime.substr(4,2);
+
 }
 
 int main(){
@@ -36,21 +43,27 @@ int main(){
                 int checksum=check(str);
                 
                 int senchecksum=convert(str.substr(asteriskPos + 1, 2));
-                if(checksum!=senchecksum) cout<<"error"<<endl;
+                if(checksum!=senchecksum) {
+                    out[k++]="error";
+          
+                }
                 else{
                     // 提取UTC时间字段
                     string utcTime = str.substr(7, 6);
-                    //cout<<utcTime<<endl;
-                    print_BeingTime(utcTime);
+     
+                    convert_BeingTime(utcTime);
                 }
             }
         }
 
     }
+    for(int i=0;i<k;i++){
+        cout<<out[i]<<endl;
+    }
 }
 
 /*
-$GPRMC,024813.640,A,3158.4608,N,11848.3737,E,10.05,324.27,150706,,,A*50
+$GPRMC,014813.640,A,3158.4608,N,11848.3737,E,10.05,324.27,150706,,,A*50
 $GPGSV,3,1,11,10,63,137,17,07,61,098,15,05,59,290,20,08,54,157,30*70
 $GPRMC,194548.127,A,5230.657,N,01325.713,E,3968.7,122.8,200220,000.0,W*44
 $GPGGA,092750.000,5321.6802,N,00630.3372,w,1,8,1.03,61.7,M,55.2,M,,*76

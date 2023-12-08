@@ -23,12 +23,11 @@ void str_replace(string str,string olds,string news){
 
 int main(){
     string str,olds,news;
-    while(1){
     getline(cin,str);
     getline(cin,olds);
     getline(cin,news);
     str_replace(str,olds,news);
-    }
+    
     
 }
 
