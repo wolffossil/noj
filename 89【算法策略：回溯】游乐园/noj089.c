@@ -3,8 +3,8 @@
 #include <string.h>
 
 int n,m;
-int map[100][100]={0};
-int used[100]={0};
+int map[1000][1000]={0};
+int used[1000]={0};
 int MAX=0;;
 
 int max(int x, int y){
@@ -12,13 +12,14 @@ int max(int x, int y){
     return y;
 }
 
-void dfs(int s,int sum){
+void dfs(int s,int sum,int points){
     //printf("sum:%d\n",sum);
+    //if(points==n)
     MAX=max(MAX,sum);
-    for(int i=0;i<n;i++){
+    for(int i=1;i<=n;i++){
         if(map[s][i]&&!used[i]){
             used[i]=1;
-            dfs(i,sum+map[s][i]);
+            dfs(i,sum+map[s][i],points+1);
             used[i]=0;
         }
     }
@@ -28,13 +29,16 @@ void dfs(int s,int sum){
 int main(){
     scanf("%d %d",&n,&m);
     int a,b,c;
+    memset(map,0,sizeof(map));
     for(int i=0;i<m;i++){
         scanf("%d %d %d",&a,&b,&c);
         map[a][b]=c;
         map[b][a]=c;
     }
     for(int i=1;i<=n;i++){
-        dfs(i,0);
+        memset(used,0,sizeof(used));
+        used[i]=1;
+        dfs(i,0,1);
     }
     printf("%d\n",MAX);
 
