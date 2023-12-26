@@ -8,6 +8,8 @@ int main(){
     char str1[10];
     char str2[10];
     int sum=0;
+    scanf("%s",str1);
+    scanf("%s",str2);
     for(int i=0;i<6;i++){
         if(i<=1){
             sum+=(str2[i]-str1[i]+26)%26;

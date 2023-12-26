@@ -4,23 +4,43 @@
 #include <math.h>
 
 
+struct number{
+    int data;
+    int sign;
+};
+
+
 int main(){
-    int used[1001];
-    memset(used,-1,sizeof(used));
+    struct number used[1001];
+    for(int i=0;i<1001;i++){
+        used[i].sign=0;
+    }
     int n;
     scanf("%d",&n);
     int a[n];
     for(int i=0;i<n;i++){
         scanf("%d",&a[i]);
     }
-    for(int i=0;i<n;i++){
-        used[a[i]]++;
+    int k=0;
+
+    used[k++].data=a[0];
+    for(int i=1;i<n;i++){
+        int flag=0;
+        for(int j=0;j<k;j++){
+            if(used[j].data==a[i]){
+                used[j].sign++;
+                flag=1;
+                break;
+            }
+        }
+        printf("\n");
+        if(!flag){
+            used[k++].data=a[i];
+        }
     }
     int sum=0;
-    for(int i=0;i<=1000;i++){
-        if(used[i]!=-1){
-            sum+=used[i];
-        }
+    for(int i=0;i<k;i++){
+        sum+=used[i].sign;
     }
     printf("%d\n",sum);
 
