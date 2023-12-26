@@ -12,14 +12,12 @@ int max(int x, int y){
     return y;
 }
 
-void dfs(int s,int sum,int points){
-    //printf("sum:%d\n",sum);
-    //if(points==n)
+void dfs(int s,int sum){
     MAX=max(MAX,sum);
     for(int i=1;i<=n;i++){
         if(map[s][i]&&!used[i]){
             used[i]=1;
-            dfs(i,sum+map[s][i],points+1);
+            dfs(i,sum+map[s][i]);
             used[i]=0;
         }
     }
@@ -38,7 +36,7 @@ int main(){
     for(int i=1;i<=n;i++){
         memset(used,0,sizeof(used));
         used[i]=1;
-        dfs(i,0,1);
+        dfs(i,0);
     }
     printf("%d\n",MAX);
 
