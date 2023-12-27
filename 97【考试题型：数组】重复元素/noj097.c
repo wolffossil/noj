@@ -5,7 +5,7 @@
 
 
 struct number{
-    int data;
+    long long data;
     int sign;
 };
 
@@ -19,7 +19,7 @@ int main(){
     scanf("%d",&n);
     int a[n];
     for(int i=0;i<n;i++){
-        scanf("%d",&a[i]);
+        scanf("%lld",&a[i]);
     }
     int k=0;
 
