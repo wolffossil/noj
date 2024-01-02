@@ -12,9 +12,8 @@ double solve_area(double AB,double BC,double CD,double DA,double diagonal){
 }
 
 double solve_angle(double AB,double BC,double CD,double DA,double diagonal,double area){
-    double pi = 3.1415926f;
     double angle=(4 *area )/(BC * BC + DA * DA - AB * AB - CD * CD);
-    return atan(angle)*180.0/pi;
+    return atan(angle)*180.0/PI;
     
 }
 
