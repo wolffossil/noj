@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 
 
@@ -15,19 +16,23 @@ int judge(int i){
     else if(str[i]=='6'&&str[len-i-1]=='9'){
         return 1;
     }
+    else if(str[i]=='0'&&str[len-i-1]=='0'){
+        return 1;
+    }
+    else if(str[i]=='8'&&str[len-i-1]=='8'){
+        return 1;
+    }
     return 0;
 }
 
 
 int main(){
     
-    char ch;
-    while((ch = getchar()) !='\n'){
-        str[len]=ch;
-        len++;
-    }
+
+    scanf("%s",str);
+    len =strlen(str);
     int flag=1;
-    //printf("%s\n",str);
+
 
     if(len==1){
         if(str[0]=='1')
